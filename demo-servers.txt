@@ -1,0 +1,5 @@
+*vpn_servers
+HostName,IP,Score,Ping,Speed,CountryLong,CountryShort,NumVpnSessions,Uptime,TotalUsers,TotalTraffic,LogType,Operator,Message,OpenVPN_ConfigData_Base64
+vpn123456789.opengw.net,185.199.108.153,1234567,50,1000000,Netherlands,NL,100,1234567,1000,1000000000,1,OpenVPN,,
+vpn987654321.opengw.net,185.199.109.153,9876543,30,2000000,Germany,DE,150,9876543,1500,2000000000,1,OpenVPN,,
+vpn555666777.opengw.net,185.199.110.153,5556667,40,1500000,France,FR,120,5556667,1200,1500000000,1,OpenVPN,, 
