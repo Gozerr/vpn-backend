@@ -6,20 +6,19 @@ app.use(cors());
 
 let cache = '';
 let lastUpdate = 0;
-const FILTER_COUNTRIES = ['Netherlands', 'Germany', 'Nederland', 'Deutschland', 'France', 'Canada'];
-
+// Убираем фильтрацию по странам, отдаём все сервера
 async function updateCache() {
   try {
-    const res = await axios.get('https://www.vpngate.net/api/iphone/', { timeout: 10000 });
+    const res = await axios.get('https://www.vpngate.net/api/iphone/', { timeout: 20000 });
     const lines = res.data.split('\n');
     const header = lines[1];
     const filtered = [header];
     for (const line of lines) {
-      if (FILTER_COUNTRIES.some(c => line.includes(c))) filtered.push(line);
+      if (line && !line.startsWith('*') && !line.startsWith('#') && line.split(',').length > 14) filtered.push(line);
     }
     cache = [lines[0], ...filtered].join('\n');
     lastUpdate = Date.now();
-    console.log('VPNGate cache updated');
+    console.log('VPNGate cache updated:', filtered.length, 'servers');
   } catch (e) {
     console.error('Failed to update VPNGate cache:', e.message);
   }
