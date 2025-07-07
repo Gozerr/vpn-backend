@@ -10,14 +10,15 @@ let lastUpdate = 0;
 // --- GitHub OpenVPN sources ---
 const GITHUB_OVPN_SOURCES = [
   {
-    api: 'https://api.github.com/repos/hagezi/openvpn-list/contents/ovpn',
-    raw: 'https://raw.githubusercontent.com/hagezi/openvpn-list/main/ovpn/'
+    api: 'https://api.github.com/repos/hagezi/openvpn-list/contents/',
+    raw: 'https://raw.githubusercontent.com/hagezi/openvpn-list/main/'
   },
   {
-    api: 'https://api.github.com/repos/aztecrabbit/free-openvpn/contents/ovpn',
-    raw: 'https://raw.githubusercontent.com/aztecrabbit/free-openvpn/main/ovpn/'
+    api: 'https://api.github.com/repos/aztecrabbit/free-openvpn/contents/',
+    raw: 'https://raw.githubusercontent.com/aztecrabbit/free-openvpn/main/'
   },
 ];
+
 
 async function fetchOvpnFromGithub() {
   let servers = [];
