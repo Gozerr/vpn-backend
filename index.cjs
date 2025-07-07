@@ -17,7 +17,6 @@ const GITHUB_OVPN_SOURCES = [
     api: 'https://api.github.com/repos/aztecrabbit/free-openvpn/contents/ovpn',
     raw: 'https://raw.githubusercontent.com/aztecrabbit/free-openvpn/main/ovpn/'
   },
-  // Можно добавить другие репозитории по аналогии
 ];
 
 async function fetchOvpnFromGithub() {
@@ -25,12 +24,12 @@ async function fetchOvpnFromGithub() {
   for (const src of GITHUB_OVPN_SOURCES) {
     try {
       console.log('Получаю список .ovpn с', src.api);
-      const res = await axios.get(src.api, { timeout: 10000, headers: { 'User-Agent': 'vpn-app-bot' } });
+      const res = await axios.get(src.api, { timeout: 15000, headers: { 'User-Agent': 'vpn-app-bot' } });
       const files = res.data.filter(f => f.name.endsWith('.ovpn'));
       for (const file of files) {
         try {
           const rawUrl = src.raw + file.name;
-          const ovpnRes = await axios.get(rawUrl, { timeout: 10000 });
+          const ovpnRes = await axios.get(rawUrl, { timeout: 15000 });
           servers.push({
             name: file.name.replace('.ovpn', ''),
             ovpn: ovpnRes.data,
@@ -93,4 +92,4 @@ app.get('/status', (req, res) => {
 app.get('/', (req, res) => res.send('GitHub OVPN Proxy API'));
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log('Server running on port', port)); 
+app.listen(port, () => console.log('Server running on port', port));
